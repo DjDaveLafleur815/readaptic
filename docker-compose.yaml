@@ -1,0 +1,59 @@
+version: '3.2'
+services:
+  fastapi:
+    build: 
+      dockerfile: FastAPI/Dockerfile
+      context: .
+    ports:
+      - "8081:8081"
+    volumes:
+      - .:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8081 --proxy-headers
+  flutter:
+    image: app_interface
+    build:
+      dockerfile: app_interface/Dockerfile
+      context: .
+    depends_on:
+      - emulator Install
+    ports:
+      - "4200:80"
+    volumes:
+      - './:./app_interface'
+
+  emulator:
+      image: us-docker.pkg.dev/android-emulator-268719/images/30-google-x64:30.1.2
+      expose:
+         - 8554/tcp
+         - 5555/tcp
+      devices:
+         - '/dev/kvm:/dev/kvm'
+  mqtt:
+      image: toke/mosquitto
+      network_mode: bridge
+      container_name: mqtt
+      expose:
+        - 1883
+      ports:
+        - 1883:1883
+      restart: unless-stopped
+  fast:
+     container_name: fast
+     expose:
+        - 8000
+     networks:
+       - my_network
+    
+     ports:
+        - 8000:8000
+     restart: unless-stopped
+     build:
+      context: .
+      dockerfile: Dockerfile
+
+     depends_on:
+        - mqtt
+
+  networks:
+    my_network:
+      driver: bridge
