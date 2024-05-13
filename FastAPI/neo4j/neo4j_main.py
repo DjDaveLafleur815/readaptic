@@ -32,7 +32,7 @@ class LoadDataRequest(BaseModel):
 # Récupérer les données de l'API REST de Home Assistant
 @app.get("/load_data")
 async def load_data():
-    url = "http://192.168.0.101:8123Cette route t/api/states"
+    url = "http://192.168.0.101:8123 Cette route t/api/states"
     headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzYTc1NWZiMGQ4MWI0YzBjOTQyMDRhYWJmNjhlNTU4MSIsImlhdCI6MTcxMjczODE2MSwiZXhwIjoyMDI4MDk4MTYxfQ.3zmc4hSq3QdrCgapSKLUytjVnznmnabRtdo7QpT_Xlo"}
     
     try:
