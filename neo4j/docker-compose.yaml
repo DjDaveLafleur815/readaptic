@@ -1,0 +1,24 @@
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: 'neo4j'
+    volumes:
+      - '$HOME/neo4j/data:/data'
+      - '$HOME/neo4j/conf/:/conf/'
+      - '$HOME/neo4j/plugins:/plugins'
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      - NEO4J_PLUGINS=["apoc"]
+    restart: on-failure
+    networks:
+        - neo4j_network
+    command: neo4j
+
+networks:
+  neo4j_network:
+    driver: bridge
+
+volumes:
+  dgraph:
