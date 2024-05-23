@@ -232,13 +232,13 @@ flutter doctor -v
 
 ### Run the app interface after Docker installation
 ```
-cd FastAPI
+cd readaptic/app_interface
 
 docker build -t app-interface . && docker run --rm -p 1200:1200 app-interface
 ```
 
-### Run the Neo4j
+### Run the Neo4j (make executable docker.sh before running it)
 ```
-cd readaptic/FastAPI/neo4j
-./docker.sh
+cd readaptic/neo4j
+sudo ./docker.sh
 ```
