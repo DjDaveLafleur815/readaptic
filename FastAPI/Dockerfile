@@ -22,4 +22,4 @@ EXPOSE 8000
 # Commande pour exécuter l'application
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8081", "--proxy-headers"]
 
-# docker build -t fastapi . && docker run --rm -p 8081:8081 fastapi
+# sudo docker build -t fastapi . && sudo docker run --rm -p 8081:8081 fastapi
