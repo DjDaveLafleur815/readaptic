@@ -4,7 +4,7 @@ import requests
 
 app = FastAPI()
 
-# Modele de données pour les capteurs
+# Modèle de données pour les capteurs
 class SensorData(BaseModel):
     sensor_id: str
     value: float

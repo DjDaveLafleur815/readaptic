@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    debugShowCheckedModeBanner: false, // Enlever la bannière "Debug"
-    home: HomeView(), // Définir HomeView comme écran d'accueil de l'application
+
   ));
 }
 
@@ -14,8 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeView(),
+      debugShowCheckedModeBanner: false, // Remove the debug banner
+      home: HomeView(), // HomeView widget
     );
   }
 }
