@@ -25,4 +25,4 @@ FROM nginx:1.21.1-alpine
 COPY --from=build-env /app/build/web /usr/share/nginx/html
 
 
-# docker build -t app-interface . && docker run --rm -p 1200:80 app-interface
+# sudo docker build -t app-interface . && sudo docker run --rm -p 1200:80 app-interface

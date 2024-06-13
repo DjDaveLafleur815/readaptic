@@ -1,5 +1,5 @@
 # Utilisez une image de base Python
-FROM python:3.9.16-alpine3.17
+FROM python:latest
 
 RUN mkdir -p /app
 
@@ -17,9 +17,9 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 COPY . /app/
 
 # Exposez le port sur lequel l'application FastAPI fonctionne
-EXPOSE 8000
+EXPOSE 8081
 
 # Commande pour exécuter l'application
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8081", "--proxy-headers"]
 
-# docker build -t fastapi . && docker run --rm -p 8081:8081 fastapi
+# sudo docker build -t fastapi . && sudo docker run --rm -p 8081:8081 fastapi

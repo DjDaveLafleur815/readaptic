@@ -1,55 +1,44 @@
-version: '3.2'
+version: '3.8'
+
 services:
-  fastapi:
-    build: 
-      dockerfile: FastAPI/Dockerfile
-      context: .
-    ports:
-      - "8081:8081"
-    volumes:
-      - .:/app
-    command: uvicorn main:app --host 0.0.0.0 --port 8081 --proxy-headers
   flutter:
-    image: app_interface
     build:
-      dockerfile: app_interface/Dockerfile
-      context: .
-    depends_on:
-      - emulator Install
-    ports:
-      - "4200:80"
-    volumes:
-      - './:./app_interface'
-
-  emulator:
-      image: us-docker.pkg.dev/android-emulator-268719/images/30-google-x64:30.1.2
-      expose:
-         - 8554/tcp
-         - 5555/tcp
-      devices:
-         - '/dev/kvm:/dev/kvm'
-  mqtt:
-      image: toke/mosquitto
-      network_mode: bridge
-      container_name: mqtt
-      expose:
-        - 1883
-      ports:
-        - 1883:1883
-      restart: unless-stopped
-  fast:
-     container_name: fast
-     expose:
-        - 8000
-     networks:
-       - my_network
-    
-     ports:
-        - 8000:8000
-     restart: unless-stopped
-     build:
-      context: .
+      context: ./app_interface
       dockerfile: Dockerfile
+    ports:
+      - "1200:1200"
+    volumes:
+      - './run/desktop/mnt/host/c/Users/davidantoine/readaptic/app_interface:/app_interface:rw'
 
-     depends_on:
-        - mqtt
+  neo4j:
+    image: neo4j:latest
+    container_name: 'neo4j'
+    volumes:
+      - '$HOME/neo4j/data:/data'
+      - '$HOME/neo4j/conf/:/conf/'
+      - '$HOME/neo4j/plugins:/plugins'
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      - NEO4J_PLUGINS=["apoc"]
+    restart: on-failure
+    networks:
+        - my_network
+    command: neo4j
+
+  fastapi:
+    container_name: fastapi
+    build:
+      context: ./FastAPI
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+
+volumes:
+  fastapi_data:
+  dgraph:
+
+networks:
+  my_network:
+    driver: bridge
