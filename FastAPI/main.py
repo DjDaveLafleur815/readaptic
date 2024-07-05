@@ -14,10 +14,10 @@ def get_sensor_data(sensor_entity_id):
     pass  # Remplacer par votre logique de récupération des données du capteur
 
 # URL de l'API REST de Home Assistant
-HA_API_URL = "http://192.168.0.101:8123/api/states"
+HA_API_URL = "http://192.168.43.76:8123/api/states"
 
 # Votre jeton d'authentification pour l'API REST de Home Assistant
-HA_ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzYTc1NWZiMGQ4MWI0YzBjOTQyMDRhYWJmNjhlNTU4MSIsImlhdCI6MTcxMjczODE2MSwiZXhwIjoyMDI4MDk4MTYxfQ.3zmc4hSq3QdrCgapSKLUytjVnznmnabRtdo7QpT_Xlo"
+HA_ACCESS_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1N2UxYzFhODg3MzY0OWQ5YWNiMjVhMzE0NGI5ZTBhOCIsImlhdCI6MTcyMDExOTgwNSwiZXhwIjoyMDM1NDc5ODA1fQ.f8ufNe_N-KcHbp5U91CuTuDA0EyJHOm9zTivVCC7hHE"
 
 # Fonction pour récupérer les données d'un capteur spécifique dans Home Assistant
 def get_sensor_data(sensor_entity_id):
@@ -38,10 +38,6 @@ class LoadDataRequest(BaseModel):
     url: str
     authorization_header: str
 
-def load_data_into_neo4j(data):
-    # Fonction pour charger les données dans Neo4j
-    pass  # Remplacer par votre logique de chargement dans Neo4j
-
 @app.post("/load_data")
 async def load_data(request: LoadDataRequest):
     try:
@@ -58,7 +54,7 @@ async def load_data(request: LoadDataRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to load data from Home Assistant. Error: {str(e)}")
     
-
+# Lancement de l'API
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8081)

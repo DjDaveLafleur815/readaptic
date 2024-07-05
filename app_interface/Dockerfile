@@ -21,8 +21,7 @@ WORKDIR /app/
 RUN flutter build web
 
 # Stage 2
-FROM nginx:1.21.1-alpine
+FROM nginx:latest
 COPY --from=build-env /app/build/web /usr/share/nginx/html
-
 
 # sudo docker build -t app-interface . && sudo docker run --rm -p 1200:80 app-interface

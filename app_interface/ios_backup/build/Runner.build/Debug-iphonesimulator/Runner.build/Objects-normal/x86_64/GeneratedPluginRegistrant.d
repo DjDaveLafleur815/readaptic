@@ -1,0 +1,20 @@
+dependencies: \
+  /Users/davidantoine/readaptic/app_interface/ios/Runner/GeneratedPluginRegistrant.m \
+  /Users/davidantoine/readaptic/app_interface/ios/Runner/GeneratedPluginRegistrant.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Modules/module.modulemap \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/Flutter.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterAppDelegate.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterMacros.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterPlugin.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterBinaryMessenger.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterChannels.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterCodecs.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterPlatformViews.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterTexture.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterCallbackCache.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterDartProject.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterEngine.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterEngineGroup.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterHeadlessDartRunner.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterPluginAppLifeCycleDelegate.h \
+  /Users/davidantoine/readaptic/app_interface/build/ios/Debug-iphonesimulator/Flutter.framework/Headers/FlutterViewController.h

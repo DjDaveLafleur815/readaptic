@@ -1,0 +1,9 @@
+version: "Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)"
+options: "dec25e33f23a7d8f59bc4205ba8f06f82f55062d0155b4ae324f73e99030262e"
+build_start_time: [1720121471, 373223000]
+build_end_time: [1720121483, 157490000]
+inputs:
+  "/Users/davidantoine/readaptic/app_interface/ios/Runner/AppDelegate.swift": [1716481192, 0]
+  "/Users/davidantoine/readaptic/app_interface/ios/RunnerTests/RunnerTests.swift": [1716481192, 0]
+  ? "/Users/davidantoine/readaptic/app_interface/ios/build/Runner.build/Release-iphoneos/Runner.build/DerivedSources/GeneratedAssetSymbols.swift"
+  : [1720121471, 263297347]

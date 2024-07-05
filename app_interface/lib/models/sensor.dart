@@ -1,33 +1,28 @@
-// Class that represents a sensor
 class Sensor {
-  final String SensorId;
-  final String SensorName;
-  final String SensorState;
+  final String id;
+  final String state;
+  final Map<String, dynamic> attributes;
+  final DateTime lastChanged;
+  final DateTime lastReported;
+  final DateTime lastUpdated;
+
   Sensor({
-    required this.SensorId,
-    required this.SensorName,
-    required this.SensorState,
+    required this.id,
+    required this.state,
+    required this.attributes,
+    required this.lastChanged,
+    required this.lastReported,
+    required this.lastUpdated,
   });
 
-  static fromJson(Sensor sensor) {}
-
-  factory Sensor.fromMap(Map<String, dynamic> map) {
-    final SensorId = map['entity_id'];
-    final SensorName = map['attributes']['friendly_name'];
-    final SensorState = map['state'];
+  factory Sensor.fromJson(Map<String, dynamic> json) {
     return Sensor(
-      SensorId: SensorId,
-      SensorName: SensorName,
-      SensorState: SensorState,
+      id: json['entity_id'],
+      state: json['state'],
+      attributes: json['attributes'],
+      lastChanged: DateTime.parse(json['last_changed']),
+      lastReported: DateTime.parse(json['last_reported']),
+      lastUpdated: DateTime.parse(json['last_updated']),
     );
-  }
-  
-// Get the full name of the sensor
-  String get fullSensorName {
-    return '${Sensor(
-      SensorId: SensorId, 
-      SensorName: SensorName, 
-      SensorState: SensorState
-    ).SensorId} ${SensorName}';
   }
 }

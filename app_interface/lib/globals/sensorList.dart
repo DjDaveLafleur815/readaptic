@@ -11,18 +11,6 @@ List<Widget> sensors = const [
     icon: Icon(
       Icons.sensors,
     ),
-    label: "Sensor 1",
-  ),
-  NavigationDestination(
-    icon: Icon(
-      Icons.sensors,
-    ),
-    label: "Sensor 2",
-  ),
-  NavigationDestination(
-    icon: Icon(
-      Icons.sensors,
-    ),
-    label: "Sensor 3",
+    label: "Sensor",
   ),
 ];

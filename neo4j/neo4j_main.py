@@ -1,6 +1,5 @@
 import requests
 from fastapi import FastAPI, HTTPException
-from py2neo import Graph, Node
 from neo4j import GraphDatabase
 from pydantic import BaseModel
 
@@ -12,18 +11,29 @@ uri = "bolt://localhost:7687"
 user = "neo4j"
 password = "password"
 driver = GraphDatabase.driver(uri, auth=(user, password))
-graph = Graph(uri, auth=(user, password))
 
 # Fonction pour charger les données dans Neo4j
 def load_data_into_neo4j(data):
-    for item in data:
-        node = Node("Data", entity_id=item['entity_id'], state=item['state'])
-        graph.create(node)
     with driver.session() as session:
         for item in data:
             session.run("""
-                CREATE (n:Entity {property: $entity_id})
-            """, value=item['entity_id'])
+                CALL apoc.load.jsonParams(
+                    'http://192.168.43.76:8123/api/states',
+                    { Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1N2UxYzFhODg3MzY0OWQ5YWNiMjVhMzE0NGI5ZTBhOCIsImlhdCI6MTcyMDExOTgwNSwiZXhwIjoyMDM1NDc5ODA1fQ.f8ufNe_N-KcHbp5U91CuTuDA0EyJHOm9zTivVCC7hHE' },
+                    null
+                    ) YIELD value
+                UNWIND value AS state
+                MERGE (n:HomeAssistantState {entity_id: state.entity_id})
+                SET n.state_id = state.id,
+                    n.user_id = state.user_id,
+                    n.parent_id = state.parent_id,
+                    n.state = state.state,
+                    n.last_changed = state.last_changed,
+                    n.last_updated = state.last_updated,
+                    n.attributes = apoc.convert.toJson(state.attributes) // Convert attributes map to JSON string
+                RETURN n
+
+            """, entity_id=item['entity_id'], state=item['state'])
 
 class LoadDataRequest(BaseModel):
     url: str
@@ -32,8 +42,10 @@ class LoadDataRequest(BaseModel):
 # Récupérer les données de l'API REST de Home Assistant
 @app.get("/load_data")
 async def load_data():
-    url = "http://192.168.0.101:8123 Cette route t/api/states"
-    headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzYTc1NWZiMGQ4MWI0YzBjOTQyMDRhYWJmNjhlNTU4MSIsImlhdCI6MTcxMjczODE2MSwiZXhwIjoyMDI4MDk4MTYxfQ.3zmc4hSq3QdrCgapSKLUytjVnznmnabRtdo7QpT_Xlo"}
+    url = "http://192.168.1.56:8123/api/states"
+    headers = {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1N2UxYzFhODg3MzY0OWQ5YWNiMjVhMzE0NGI5ZTBhOCIsImlhdCI6MTcyMDExOTgwNSwiZXhwIjoyMDM1NDc5ODA1fQ.f8ufNe_N-KcHbp5U91CuTuDA0EyJHOm9zTivVCC7hHE"
+    }
     
     try:
         response = requests.get(url, headers=headers)
@@ -42,7 +54,7 @@ async def load_data():
         load_data_into_neo4j(data_hass)
         return {"message": "Data loaded into Neo4j"}
     except Exception as e:
-        return {"message": f"Failed to load data from Home Assistant. Error: {str(e)}"}
+        raise HTTPException(status_code=500, detail=f"Failed to load data from Home Assistant. Error: {str(e)}")
 
 @app.post("/load_data")
 async def load_data(request: LoadDataRequest):
