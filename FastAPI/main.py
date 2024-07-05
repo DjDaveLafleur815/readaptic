@@ -17,7 +17,7 @@ def get_sensor_data(sensor_entity_id):
 HA_API_URL = "http://192.168.43.76:8123/api/states"
 
 # Votre jeton d'authentification pour l'API REST de Home Assistant
-HA_ACCESS_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1N2UxYzFhODg3MzY0OWQ5YWNiMjVhMzE0NGI5ZTBhOCIsImlhdCI6MTcyMDExOTgwNSwiZXhwIjoyMDM1NDc5ODA1fQ.f8ufNe_N-KcHbp5U91CuTuDA0EyJHOm9zTivVCC7hHE"
+HA_ACCESS_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzMzA4NGEwMWMyM2M0MGZmOTRlMmJlMDIzMGQ5ZjdmMSIsImlhdCI6MTcyMDE3NzY1NywiZXhwIjoyMDM1NTM3NjU3fQ.ZGYQuyqYmlt_OJpUdYEkEL9aMhZA-zGZGXj1hFvW_zc"
 
 # Fonction pour récupérer les données d'un capteur spécifique dans Home Assistant
 def get_sensor_data(sensor_entity_id):

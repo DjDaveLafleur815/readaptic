@@ -12,7 +12,7 @@ class SensorView extends StatefulWidget {
 
 class _SensorViewState extends State<SensorView>  {
   List <dynamic> sensor = [];
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,5 +61,5 @@ class _SensorViewState extends State<SensorView>  {
         sensor = json;
       });
     print('fetchSensors completed !');
-  }
+    }
 }
