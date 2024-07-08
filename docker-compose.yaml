@@ -15,6 +15,7 @@ services:
     container_name: 'neo4j'
     volumes:
       - ./docker.sh:/docker-entrypoint-initdb.d/docker.sh
+      - ./docker.cmd:/docker-entrypoint-initdb.d/docker.cmd
     ports:
       - 7474:7474
       - 7687:7687

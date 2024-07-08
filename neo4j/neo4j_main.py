@@ -30,7 +30,7 @@ def load_data_into_neo4j(data):
                     n.state = state.state,
                     n.last_changed = state.last_changed,
                     n.last_updated = state.last_updated,
-                    n.attributes = apoc.convert.toJson(state.attributes) // Convert attributes map to JSON string
+                    n.attributes = apoc.convert.toJson(state.attributes)
                 RETURN n
 
             """, entity_id=item['entity_id'], state=item['state'])
